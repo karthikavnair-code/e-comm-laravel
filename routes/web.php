@@ -19,7 +19,14 @@ Route::get('login', function () {
     return view('login');
 })->middleware('preventlogin');
 
+Route::get('logout', function(){
+    Session::forget('user');
+    return redirect('login');
+});
+
 Route::post('login', [UserController::class, 'login']);
 Route::get('product', [ProductController::class, 'index']);
 Route::get('detail/{id}', [ProductController::class, 'detail']);
+Route::post('add_to_cart', [ProductController::class, 'addToCart']);
+
 
